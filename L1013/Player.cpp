@@ -5,8 +5,9 @@
 using namespace std;
 
 APlayer::APlayer(int X, int Y)
-	:AActor(X, Y, 'P', 40, ECollisionType::CollisionEnable)
+	:AActor(X, Y, 'P', 40, ECollisionType::CollisionEnable, { 0x00,0xff,0x00,0x00 })
 {
+	LoadBMP("data/player.bmp");
 }
 
 APlayer::~APlayer()
@@ -16,43 +17,31 @@ APlayer::~APlayer()
 
 void APlayer::Tick()
 {
-
-	switch (MyEngine::GetKeyCode())
+	if (GEngine->MyEvent.type != SDL_KEYDOWN)
 	{
-	case 'w':
-	case 'W':
-		Y--;
-		if (!PredictCanMove())
-		{
-			Y++;
-		}
+		return;
+	}
+
+	switch (GEngine->MyEvent.key.keysym.sym)
+	{
+	case SDLK_w:
+		--Y;
+		Y = PredictCanMove() ? Y : ++Y;
 		break;
-	case 'd':
-	case 'D':
-		X++;
-		if (!PredictCanMove())
-		{
-			X--;
-		}
+	case SDLK_d:
+		++X;
+		X = PredictCanMove() ? X : --X;
 		break;
-	case 's':
-	case 'S':
-		Y++;
-		if (!PredictCanMove())
-		{
-			Y--;
-		}
+	case SDLK_s:
+		++Y;
+		Y = PredictCanMove() ? Y : --Y;
+
 		break;
-	case'a':
-	case 'A':
-		X--;
-		if (!PredictCanMove())
-		{
-			X++;
-		}
+	case SDLK_a:
+		--X;
+		X = PredictCanMove() ? X : ++X;
 		break;
-	case 'q':
-	case 'Q':
+	case SDLK_ESCAPE:
 		GEngine->QuitGame();
 		break;
 	}

@@ -26,7 +26,7 @@ public:
 	virtual void Terminalize() = 0;
 
 	FWorld& GetWorld() const;
-	void CursorView(bool view);
+	//void CursorView(bool view);
 
 	void Run();
 	void QuitGame();
@@ -47,6 +47,8 @@ public:
 	SDL_Window* MyWindow;
 	SDL_Renderer* MyRenderer;
 	SDL_Event MyEvent; // 이벤트 인스턴스 생성
+	SDL_Color BackgroundColor; // 초기 배경색
+
 
 
 protected:

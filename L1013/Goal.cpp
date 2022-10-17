@@ -5,8 +5,9 @@
 using namespace std;
 
 AGoal::AGoal(int X, int Y)
-	:AActor(X, Y, 'G', 20, ECollisionType::QueryOnly)
+	:AActor(X, Y, 'G', 20, ECollisionType::QueryOnly, { 255,255,0,0 })
 {
+	LoadBMP("data/coin.bmp");
 }
 
 AGoal::~AGoal()
