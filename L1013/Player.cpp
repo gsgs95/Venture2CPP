@@ -8,7 +8,7 @@ int APlayer::Frames = 5;
 
 APlayer::APlayer(int X, int Y, vector<int> FrameTable)
 	:AActor(X, Y, 'P', 40, ECollisionType::CollisionEnable, { 0x00,0xff,0x00,0x00 })
-	, Direction{ 3 }, ElapsedTime{ 0 }, Speed{ 1000 }, Frame{ 0 }
+	, Direction{ 3 }, ElapsedTime{ 0 }, Speed{ 2 }, Frame{ 0 }
 	, bIsReverse{ false }, FrameTable{ FrameTable }
 {
 	MyColorKey = { 0xff,0x00,0xff,0 };
@@ -23,9 +23,9 @@ APlayer::~APlayer()
 void APlayer::Tick()
 {
 	ElapsedTime += GEngine->GetWorldDeltaSeconds();
-	if (ElapsedTime >= (Speed/Frames))
+	if (ElapsedTime >= (1000/(Speed*Frames)))
 	{
-		ElapsedTime -= (Speed/Frames);
+		ElapsedTime -= (1000 / (Speed * Frames));
 		// 프레임 흐름			0 1 2 3 4 3 2 1 0 1 2 3 4 3  ....
 		// 프레임테이블 흐름	1 2 0 3 4 3 0 2 1 2 0 3 4 3 ....
 		if (!bIsReverse) // 정방향인경우
