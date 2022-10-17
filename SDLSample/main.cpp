@@ -54,6 +54,7 @@ int SDL_main(int argc, char* argv[])
 		{
 			BackgroundColor = { 0xff, 0, 0, 0 };
 		}
+		
 
 		// 화면에 그리기
 		SDL_RenderPresent(MyRenderer);

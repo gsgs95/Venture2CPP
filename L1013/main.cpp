@@ -6,10 +6,14 @@
 
 #include "World.h"
 
+#include "SDL.h"
+#pragma comment(lib, "SDL2main.lib")
+#pragma comment(lib, "SDL2.lib")
+
 using namespace std;
 
 
-int main()
+int SDL_main(int argc, char* argv[])
 {
 	// Engine
 	// Load
