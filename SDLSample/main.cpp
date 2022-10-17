@@ -20,10 +20,11 @@ int SDL_main(int argc, char* argv[])
 	// DrawCall
 
 	int X = 0;
+	SDL_Color BackgroundColor = { 0xff, 0, 0, 0 };
 
 	while (1)
 	{
-		SDL_SetRenderDrawColor(MyRenderer, 0xff, 0, 0, 0); // 랜더러 색상 설정 (타깃랜더러, r, g, b, a)
+		SDL_SetRenderDrawColor(MyRenderer, BackgroundColor.r, BackgroundColor.g, BackgroundColor.b, BackgroundColor.a); // 랜더러 색상 설정 (타깃랜더러, r, g, b, a)
 		SDL_RenderClear(MyRenderer); // 해당 렌더러에게 화면 지우게 시킴
 
 		// 사각형 그리기
@@ -35,8 +36,29 @@ int SDL_main(int argc, char* argv[])
 		SDL_Rect MyRect = { X++,100,100,100 };
 		SDL_RenderDrawRect(MyRenderer, &MyRect);
 
+		
+		// 메시지 루프: 메시지를 가져오고 처리하는 루프
+
+		SDL_Event MyEvent; // 이벤트 인스턴스 생성
+		SDL_PollEvent(&MyEvent); //  메시지큐에서 이벤트를 꺼내서 MyEvent에 보관 (Polling : 업데이트 된게 있는지 계속 확인하는 방법.)
+
+		if (MyEvent.type == SDL_QUIT) // 윈도우 닫기 버튼 누르는 이벤트
+		{
+			break;
+		}
+		else if (MyEvent.type == SDL_KEYDOWN) // 키보드의 아무키가 눌리는 순간
+		{
+			BackgroundColor = { 0xff, 0xff, 0, 0 };
+		}
+		else if (MyEvent.type == SDL_KEYUP)
+		{
+			BackgroundColor = { 0xff, 0, 0, 0 };
+		}
+
 		// 화면에 그리기
 		SDL_RenderPresent(MyRenderer);
+
+
 	}
 
 
