@@ -52,6 +52,8 @@ public:
 	SDL_Surface* MySurface; // RAM
 	SDL_Texture* MyTexture; // VRAM
 	void LoadBMP(string Filename);
+
+	SDL_Color MyColorKey;
 };
 
 #endif

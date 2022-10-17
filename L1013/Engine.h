@@ -19,7 +19,7 @@ protected:
 
 public:
 	virtual ~Engine();
-	
+
 	void Gotoxy(int X, int Y);
 
 	virtual void Initialize() = 0;
@@ -49,7 +49,10 @@ public:
 	SDL_Event MyEvent; // 이벤트 인스턴스 생성
 	SDL_Color BackgroundColor; // 초기 배경색
 
-
+	inline const Uint64 GetWorldDeltaSeconds()
+	{
+		return DeltaSeconds;
+	}
 
 protected:
 	virtual void Input();
@@ -59,10 +62,16 @@ protected:
 	virtual void EndPlay();
 
 	void Load(string MapFileName);
-	
+
 	FWorld* MyWorld;
 	static int KeyCode;
 	bool bIsRunning = true;
+
+	// Engine의 총시간, 한프레임의 시간등을 계산
+	Uint64 LastTick;
+	Uint64 DeltaSeconds;
+
+
 };
 
 

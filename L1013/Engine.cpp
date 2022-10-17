@@ -8,6 +8,7 @@
 #include "Goal.h"
 #include "Player.h"
 #include "Wall.h"
+#include "Monster.h"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ int Engine::KeyCode = 0;
 Engine::Engine()
 	: MyWorld{ new FWorld{} }, bIsRunning{ true }
 {
+	srand(static_cast<unsigned int>(time(NULL))); // 실행시 랜덤시드 초기화
 	SDLInit();
 }
 
@@ -39,10 +41,10 @@ void Engine::Load(string MapFileName)
 	ifstream MapFile(MapFileName);
 
 	char Data[100];
-	size_t Y = 0;
+	int Y = 0;
 	while (MapFile.getline(Data, 100))
 	{
-		for (size_t X = 0; X < strlen(Data); ++X)
+		for (int X = 0; X < strlen(Data); ++X)
 		{
 			MyWorld->SpawnActor(new AFloor(X, Y));
 			if (Data[X] == '*')
@@ -56,6 +58,10 @@ void Engine::Load(string MapFileName)
 			else if (Data[X] == 'G')
 			{
 				MyWorld->SpawnActor(new AGoal(X, Y));
+			}
+			else if (Data[X] == 'M')
+			{
+				MyWorld->SpawnActor(new AMonster(X, Y));
 			}
 		}
 		++Y;
@@ -71,8 +77,10 @@ void Engine::Run()
 	BeginPlay();
 	while (bIsRunning)
 	{
+		DeltaSeconds = SDL_GetTicks64() - LastTick;
 		Input();
 		Tick(); // 물리, 위치 등 처리
+		LastTick = SDL_GetTicks64();
 		Render();
 	}
 	EndPlay();
@@ -103,6 +111,8 @@ void Engine::Tick()
 	}
 
 	MyWorld->Tick();
+
+	SDL_Log("%d", DeltaSeconds);
 }
 
 void Engine::Render()
@@ -143,7 +153,7 @@ void Engine::SDLInit()
 	}
 
 	MyWindow = SDL_CreateWindow("MyGame", 100, 100, 600, 600, SDL_WINDOW_VULKAN); // 파라미터: 윈도우 화면 이름, 좌표 시작점 x,y , 윈도우 너비 높이 w,h, 윈도우 설정 플래그(SDL_WINDOW_VULKAN); 리턴값: 윈도우 포인터
-
+	//MyRenderer = SDL_CreateRenderer(MyWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_SOFTWARE);
 	MyRenderer = SDL_CreateRenderer(MyWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE); // 타깃 윈도우에 연결된 x번째 랜더러 생성하여 리턴, 속성플래그 가짐(현재 하드웨어 가속 & 타깃텍스쳐)
 	BackgroundColor = { 0xff,0xff,0xff,0 };
 }

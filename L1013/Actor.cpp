@@ -8,7 +8,8 @@ using namespace std;
 AActor::AActor(int X, int Y, char Shape, int ZOrder, ECollisionType CollisionType,
 	SDL_Color Color, int TileSize)
 	:X{ X }, Y{ Y }, Shape{ Shape }, ZOrder{ ZOrder }, CollisionType{ CollisionType }
-	, MyColor{ Color }, TileSize{ TileSize }, MySurface{ nullptr }, MyTexture{ nullptr }  // 초기화 리스트
+	, MyColor{ Color }, TileSize{ TileSize }, MySurface{ nullptr }, MyTexture{ nullptr }
+	, MyColorKey{ 0xff,0xff,0xff,0 } // 초기화 리스트
 {
 }
 
@@ -68,5 +69,9 @@ void AActor::LoadBMP(string Filename)
 {
 	MySurface = SDL_LoadBMP(Filename.c_str());
 
+	// 크로마키 세팅 
+	SDL_SetColorKey(MySurface, SDL_TRUE, 
+		SDL_MapRGB(MySurface->format, MyColorKey.r, MyColorKey.g, MyColorKey.b));
+	// SDL_MapRGB 포멧 형식 지정, 색지정
 	MyTexture = SDL_CreateTextureFromSurface(GEngine->MyRenderer, MySurface);
 }

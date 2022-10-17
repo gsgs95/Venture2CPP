@@ -216,7 +216,7 @@ int main()
 	// FPlayer P;
 
 	cout << "\nCreate Monster" << endl;
-	FMonster* Monster = new FMonster{ MonsterType::BOAR };
+	FMonster* AMonster = new FMonster{ MonsterType::BOAR };
 
 	cout << endl;
 	Player->PrintInfo();
@@ -226,17 +226,17 @@ int main()
 	Player = nullptr;
 	
 	cout << endl;
-	Monster->PrintInfo();
+	AMonster->PrintInfo();
 
 	cout << "\nMonster->Dead()" << endl;
-	Monster->Dead();
-	Monster = nullptr;
+	AMonster->Dead();
+	AMonster = nullptr;
 
 	// 원할때 메모리 해제
 	cout << "\ncustom delete Player" << endl;
 	SAFE_DELETE(Player);
 	cout << "\ncustom delete Monster" << endl;
-	SAFE_DELETE(Monster);
+	SAFE_DELETE(AMonster);
 
 
 	return 0;

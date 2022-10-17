@@ -153,6 +153,7 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="Goal.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="MyEngine.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Wall.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="Goal.h" />
+    <ClInclude Include="Monster.h" />
     <ClInclude Include="MyEngine.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Wall.h" />

@@ -48,6 +48,9 @@
     <ClCompile Include="World.cpp">
       <Filter>소스 파일\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Wall.h">
@@ -73,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="World.h">
       <Filter>헤더 파일\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
