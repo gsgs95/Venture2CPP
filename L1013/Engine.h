@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include <string>
 #include <vector>
+#include "SDL.h"
 
 using namespace std;
 
@@ -40,6 +41,12 @@ public:
 	vector<class AActor*>& GetAllActors();
 
 
+	void SDLInit();
+	void SDLTerm();
+
+	SDL_Window* MyWindow;
+	SDL_Renderer* MyRenderer;
+	SDL_Event MyEvent; // 이벤트 인스턴스 생성
 
 
 protected:
