@@ -116,16 +116,18 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)SDL2_ttf\include;$(ProjectDir)SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)SDL2_mixer\include;$(ProjectDir)SDL2_ttf\include;$(ProjectDir)SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)SDL2_ttf\lib\x64;$(ProjectDir)SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)SDL2_mixer\lib\x64;$(ProjectDir)SDL2_ttf\lib\x64;$(ProjectDir)SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>copy $(ProjectDir)SDL2\lib\x64\sdl2.dll $(OutputPath)sdl2.dll /Y
-copy $(ProjectDir)SDL2_ttf\lib\x64\*.dll $(OutputPath) /Y</Command>
+copy $(ProjectDir)SDL2_ttf\lib\x64\*.dll $(OutputPath) /Y
+copy $(ProjectDir)SDL2_mixer\lib\x64\*.dll $(OutputPath) /Y
+copy $(ProjectDir)SDL2_mixer\lib\x64\optional\*.dll $(OutputPath) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -136,18 +138,20 @@ copy $(ProjectDir)SDL2_ttf\lib\x64\*.dll $(OutputPath) /Y</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)SDL2_ttf\include;$(ProjectDir)SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)SDL2_mixer\include;$(ProjectDir)SDL2_ttf\include;$(ProjectDir)SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)SDL2_ttf\lib\x64;$(ProjectDir)SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)SDL2_mixer\lib\x64;$(ProjectDir)SDL2_ttf\lib\x64;$(ProjectDir)SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>copy $(ProjectDir)SDL2\lib\x64\sdl2.dll $(OutputPath)sdl2.dll /Y
-copy $(ProjectDir)SDL2_ttf\lib\x64\*.dll $(OutputPath) /Y</Command>
+copy $(ProjectDir)SDL2_ttf\lib\x64\*.dll $(OutputPath) /Y
+copy $(ProjectDir)SDL2_mixer\lib\x64\*.dll $(OutputPath) /Y
+copy $(ProjectDir)SDL2_mixer\lib\x64\optional\*.dll $(OutputPath) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -158,6 +162,7 @@ copy $(ProjectDir)SDL2_ttf\lib\x64\*.dll $(OutputPath) /Y</Command>
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="MyEngine.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SoundActor.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="main.cpp" />
@@ -171,6 +176,7 @@ copy $(ProjectDir)SDL2_ttf\lib\x64\*.dll $(OutputPath) /Y</Command>
     <ClInclude Include="Monster.h" />
     <ClInclude Include="MyEngine.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="SoundActor.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="Wall.h" />
     <ClInclude Include="World.h" />

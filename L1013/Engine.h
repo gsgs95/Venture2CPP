@@ -7,6 +7,12 @@
 #include <vector>
 #include "SDL.h"
 #include "SDL_ttf.h"
+#include "SDL_mixer.h"
+
+#pragma comment(lib, "SDL2main.lib")
+#pragma comment(lib, "SDL2.lib")
+#pragma comment(lib, "SDL2_ttf.lib")
+#pragma comment(lib, "SDL2_mixer.lib")
 
 using namespace std;
 
@@ -25,8 +31,6 @@ public:
 
 	virtual void Initialize() = 0;
 	virtual void Terminalize() = 0;
-
-	FWorld& GetWorld() const;
 	//void CursorView(bool view);
 
 	void Run();
@@ -40,7 +44,7 @@ public:
 	}
 
 	vector<class AActor*>& GetAllActors();
-
+	void SpawnActor(AActor* NewActor);
 
 	void SDLInit();
 	void SDLTerm();
@@ -55,6 +59,15 @@ public:
 		return DeltaSeconds;
 	}
 
+	void LoadLevel(string MapFileName);
+
+	void UnloadLevel();
+
+	inline FWorld* GetWorld() const
+	{
+		return MyWorld;
+	}
+
 protected:
 	virtual void Input();
 	virtual void Tick();
@@ -62,7 +75,6 @@ protected:
 	virtual void BeginPlay();
 	virtual void EndPlay();
 
-	void Load(string MapFileName);
 
 	FWorld* MyWorld;
 	static int KeyCode;

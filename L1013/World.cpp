@@ -49,19 +49,32 @@ void FWorld::DestroyActor(AActor* DeleteActor)
 	*/
 }
 
-void FWorld::Tick()
+void FWorld::Terminate()
 {
 	for (auto Value : ActorList)
 	{
-		Value->Tick();
+		if (Value)
+		{
+			delete Value;
+		}
+	}
+
+	ActorList.clear();
+}
+
+void FWorld::Tick()
+{
+	for (int i=0; i<ActorList.size(); i++)
+	{
+		ActorList[i]->Tick();
 	}
 }
 
 void FWorld::Render()
 {
-	for (auto Value : ActorList)
+	for (int i = 0; i < ActorList.size(); i++)
 	{
-		Value->Render();
+		ActorList[i]->Render();
 	}
 }
 
@@ -70,18 +83,18 @@ void FWorld::BeginPlay()
 	// World BeginPlay
 
 	// ActorList BeginPlay
-	for (auto Value : ActorList)
+	for (int i = 0; i < ActorList.size(); i++)
 	{
-		Value->BeginPlay();
+		ActorList[i]->BeginPlay();
 	}
 }
 
 void FWorld::EndPlay()
 {
 	// ActorList EndPlay
-	for (auto Value : ActorList)
+	for (int i = 0; i < ActorList.size(); i++)
 	{
-		Value->EndPlay();
+		ActorList[i]->EndPlay();
 	}
 
 	// World EndPlay

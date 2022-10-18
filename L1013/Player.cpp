@@ -1,6 +1,7 @@
 #include "Player.h"
 #include <iostream>
 #include "MyEngine.h"
+#include "SoundActor.h"
 
 using namespace std;
 
@@ -58,21 +59,25 @@ void APlayer::Tick()
 		--Y;
 		Y = PredictCanMove() ? Y : ++Y;
 		Direction = 2;
+		GEngine->SpawnActor(new ASoundActor("./data/move.wav", false));
 		break;
 	case SDLK_d:
 		++X;
 		X = PredictCanMove() ? X : --X;
 		Direction = 1;
+		GEngine->SpawnActor(new ASoundActor("./data/move.wav", false));
 		break;
 	case SDLK_s:
 		++Y;
 		Y = PredictCanMove() ? Y : --Y;
 		Direction = 3;
+		GEngine->SpawnActor(new ASoundActor("./data/move.wav", false));
 		break;
 	case SDLK_a:
 		--X;
 		X = PredictCanMove() ? X : ++X;
 		Direction = 0;
+		GEngine->SpawnActor(new ASoundActor("./data/move.wav", false));
 		break;
 	case SDLK_ESCAPE:
 		GEngine->QuitGame();

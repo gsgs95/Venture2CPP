@@ -93,7 +93,7 @@ extern DECLSPEC void *SDLCALL SDL_LoadFunction(void *handle,
                                                const char *name);
 
 /**
- * Unload a shared object from memory.
+ * UnloadLevel a shared object from memory.
  *
  * \param handle a valid shared object handle returned by SDL_LoadObject()
  *

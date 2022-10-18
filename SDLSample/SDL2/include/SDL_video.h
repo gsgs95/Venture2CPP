@@ -1879,7 +1879,7 @@ extern DECLSPEC int SDLCALL SDL_GL_LoadLibrary(const char *path);
 extern DECLSPEC void *SDLCALL SDL_GL_GetProcAddress(const char *proc);
 
 /**
- * Unload the OpenGL library previously loaded by SDL_GL_LoadLibrary().
+ * UnloadLevel the OpenGL library previously loaded by SDL_GL_LoadLibrary().
  *
  * \since This function is available since SDL 2.0.0.
  *

@@ -15,6 +15,8 @@ public:
 	void SpawnActor(AActor* NewActor);
 	void DestroyActor(AActor* DeleteActor);
 
+	void Terminate();
+
 	void Tick();
 	void Render();
 	void BeginPlay();

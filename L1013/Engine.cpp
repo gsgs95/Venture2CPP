@@ -10,6 +10,7 @@
 #include "Wall.h"
 #include "Monster.h"
 #include "Text.h"
+#include "SoundActor.h"
 
 using namespace std;
 
@@ -18,10 +19,10 @@ int Engine::KeyCode = 0;
 Engine::Engine()
 	: MyWorld{ new FWorld{} }, bIsRunning{ true }
 {
-	srand(static_cast<unsigned int>(time(NULL))); // 실행시 랜덤시드 초기화
+	srand(static_cast<unsigned int>(time(NULL))); // 엔진 생성시 랜덤시드 초기화
 	SDLInit();
 	TTF_Init();
-
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 }
 
 Engine::~Engine()
@@ -39,9 +40,10 @@ void Engine::Gotoxy(int X, int Y)
 }
 
 
-void Engine::Load(string MapFileName)
+void Engine::LoadLevel(string MapFileName)
 {
 	ifstream MapFile(MapFileName);
+	UnloadLevel();
 
 	char Data[100];
 	int Y = 0;
@@ -71,10 +73,11 @@ void Engine::Load(string MapFileName)
 	}
 	MapFile.close();
 
-	MyWorld->SpawnActor(new AText(100, 100, "Hello World", 30));
 	
 	// MyWorld의 ActorList를 ZOrder의 오름차순으로 Sort
 	sort(MyWorld->ActorList.begin(), MyWorld->ActorList.end(), AActor::ActorCmp);
+
+	SpawnActor(new ASoundActor("./Data/bgm.mp3",true));
 }
 
 void Engine::Run()
@@ -144,10 +147,11 @@ void Engine::EndPlay()
 	MyWorld->EndPlay();
 }
 
-FWorld& Engine::GetWorld() const
+void Engine::UnloadLevel()
 {
-	return *MyWorld;
+	MyWorld->Terminate();
 }
+
 
 void Engine::SDLInit()
 {
@@ -172,5 +176,13 @@ void Engine::SDLTerm()
 
 
 	SDL_Quit(); // SDL Quit 하여 메모리 해제 
+}
+
+void Engine::SpawnActor(AActor* NewActor)
+{
+	if (NewActor)
+	{
+		MyWorld->ActorList.push_back(NewActor);
+	}
 }
 

@@ -9,5 +9,9 @@ public:
 	~AGoal();
 
 	virtual void Tick() override;
+private:
+	bool bIsVisited = false;
+	Uint64 ElapsedTime;
+	Uint64 ExcuteTime;
 };
 

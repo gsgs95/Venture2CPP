@@ -3,6 +3,7 @@
 #include "SDL_ttf.h"
 #include "MyEngine.h"
 #include <string>
+#include <Windows.h> // 다국어 지원 wstring
 
 class AText :
     public AActor

@@ -1,18 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <fstream>
-
 #include "MyEngine.h"
-
-#include "World.h"
-
-#include "SDL.h"
-#pragma comment(lib, "SDL2main.lib")
-#pragma comment(lib, "SDL2.lib")
-#pragma comment(lib, "SDL2_ttf.lib")
-
-using namespace std;
-
 
 int SDL_main(int argc, char* argv[])
 {
@@ -24,7 +10,6 @@ int SDL_main(int argc, char* argv[])
 
 	// Quit
 	delete GEngine;
-
 
 	/*
 #ifdef _DEBUG

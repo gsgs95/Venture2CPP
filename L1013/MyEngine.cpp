@@ -15,7 +15,7 @@ MyEngine::~MyEngine()
 void MyEngine::Initialize()
 {
 
-	Load("Level1.txt");
+	LoadLevel("Level1.txt");
 }
 
 void MyEngine::Terminalize()
