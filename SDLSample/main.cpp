@@ -3,6 +3,7 @@
 
 #pragma comment(lib, "SDL2.lib")
 #pragma comment(lib, "SDL2main.lib")
+#pragma comment(lib, "SDL2_ttf.lib")
 
 
 int SDL_main(int argc, char* argv[])

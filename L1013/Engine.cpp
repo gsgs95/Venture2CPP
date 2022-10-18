@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "Wall.h"
 #include "Monster.h"
+#include "Text.h"
 
 using namespace std;
 
@@ -19,6 +20,8 @@ Engine::Engine()
 {
 	srand(static_cast<unsigned int>(time(NULL))); // 실행시 랜덤시드 초기화
 	SDLInit();
+	TTF_Init();
+
 }
 
 Engine::~Engine()
@@ -67,6 +70,8 @@ void Engine::Load(string MapFileName)
 		++Y;
 	}
 	MapFile.close();
+
+	MyWorld->SpawnActor(new AText(100, 100, "Hello World", 30));
 	
 	// MyWorld의 ActorList를 ZOrder의 오름차순으로 Sort
 	sort(MyWorld->ActorList.begin(), MyWorld->ActorList.end(), AActor::ActorCmp);
@@ -160,6 +165,8 @@ void Engine::SDLInit()
 
 void Engine::SDLTerm()
 {
+	TTF_Quit(); // TTF 메모리 해제
+
 	SDL_DestroyRenderer(MyRenderer); // 랜더러 삭제
 	SDL_DestroyWindow(MyWindow); // 윈도우 삭제
 

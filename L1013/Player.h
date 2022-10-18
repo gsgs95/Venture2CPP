@@ -13,8 +13,6 @@ public:
 
 	virtual void Tick() override;
 	bool PredictCanMove();
-	bool Promising(MyEngine& E);
-	const FWorld& GetWorld(MyEngine& E) const;
 	void Render();
 	static int Frames;
 private:

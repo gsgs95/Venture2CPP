@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{36d96fcf-f93a-4316-8fc0-2ad022c1cf65}</ProjectGuid>
-    <RootNamespace>L1013</RootNamespace>
+    <ProjectGuid>{49efbf0b-0a6c-4c62-8e42-3e96391ec4d5}</ProjectGuid>
+    <RootNamespace>L1018</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -116,17 +116,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)SDL2_ttf\include;$(ProjectDir)SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)SDL2_ttf\lib\x64;$(ProjectDir)SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
-    <PostBuildEvent>
-      <Command>copy $(ProjectDir)SDL2\lib\x64\sdl2.dll $(OutputPath)sdl2.dll /Y
-copy $(ProjectDir)SDL2_ttf\lib\x64\*.dll $(OutputPath) /Y</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -136,47 +130,16 @@ copy $(ProjectDir)SDL2_ttf\lib\x64\*.dll $(OutputPath) /Y</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)SDL2_ttf\include;$(ProjectDir)SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)SDL2_ttf\lib\x64;$(ProjectDir)SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
-    <PostBuildEvent>
-      <Command>copy $(ProjectDir)SDL2\lib\x64\sdl2.dll $(OutputPath)sdl2.dll /Y
-copy $(ProjectDir)SDL2_ttf\lib\x64\*.dll $(OutputPath) /Y</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="Floor.cpp" />
-    <ClCompile Include="Goal.cpp" />
-    <ClCompile Include="Monster.cpp" />
-    <ClCompile Include="MyEngine.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Text.cpp" />
-    <ClCompile Include="Wall.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="World.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Actor.h" />
-    <ClInclude Include="Engine.h" />
-    <ClInclude Include="Floor.h" />
-    <ClInclude Include="Goal.h" />
-    <ClInclude Include="Monster.h" />
-    <ClInclude Include="MyEngine.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Text.h" />
-    <ClInclude Include="Wall.h" />
-    <ClInclude Include="World.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -30,7 +30,7 @@ void APlayer::Tick()
 		// 프레임테이블 흐름	1 2 0 3 4 3 0 2 1 2 0 3 4 3 ....
 		if (!bIsReverse) // 정방향인경우
 		{
-			if (Frame != Frames-1) Frame++;
+			if (Frame != Frames-1) Frame++; // 정방향 흐름
 			else // 마지막 프레임인 경우
 			{
 				Frame--;
@@ -39,7 +39,7 @@ void APlayer::Tick()
 		}
 		else // 역방향인경우
 		{
-			if (Frame != 0) Frame--;
+			if (Frame != 0) Frame--; // 역방향 흐름
 			else // 첫번째 프레임인 경우
 			{
 				Frame++;
@@ -94,25 +94,6 @@ bool APlayer::PredictCanMove()
 		}
 	}
 	return true;
-}
-
-bool APlayer::Promising(MyEngine& E)
-{
-	// 맵에서 해당 X,Y 위치에 Wall이 존재하는지 확인
-	// 존재하면 false
-	// 존재하지 않으면 true
-	const FWorld* MyWorld = &GetWorld(E);
-	return false;
-}
-
-
-const FWorld& APlayer::GetWorld(MyEngine& E) const
-{
-	// 현재 존재하는 월드를 가져와야함.
-	// 월드는 현재 만들어진 엔진속에 있음.
-	// 런타임 중에 싱글턴 엔진에 접근해야함
-	return E.GetWorld();
-	// TODO: 여기에 return 문을 삽입합니다.
 }
 
 void APlayer::Render()
